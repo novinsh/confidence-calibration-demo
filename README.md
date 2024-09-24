@@ -1,6 +1,7 @@
 # Confidence Calibration Demo
 
-This is a demonstration for the UniTartuCS Institute's day.
+This is a demonstration for the UniTartuCS Institute's day. <br>
+Available at this URL: [https://novinsh.github.io/confidence-calibration-demo/](https://novinsh.github.io/confidence-calibration-demo/)
 
 It is a conversation starter with bachelor and master students who are interested in learning more about our research at the [Machine Learning Research Group](https://ml.cs.ut.ee/) on the topics of Uncertainty Quantification and Probabilistic Calibration in Classification and Regression tasks.
 
