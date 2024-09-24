@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayes-Up Links</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e7ffe7;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center; /* Center horizontally */
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Make sure elements are vertically distributed */
+            align-items: center;
+            width: 100%;
+        }
+        .button-container {
+            margin: 20px 0;
+        }
+        .button-container button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: 2px solid black;
+            cursor: pointer;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .button-container button:hover {
+            background-color: #c8eac8;
+        }
+        /* Make the Simple Demo button light red */
+        #simple-demo-button {
+            background-color: #ffcccc;
+        }
+        iframe {
+            width: 80%;
+            border: 2px solid black;
+            margin-top: 20px;
+            flex: 1;
+        }
+        /* Adjust the iframe height to be responsive */
+        main {
+            height: calc(100vh - 120px); /* Subtract the approximate height of header, buttons, and footer */
+        }
+        footer {
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            width: 100%;
+        }
+        /* Styles for the about text */
+        .about-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .about-section img {
+            width: 300px;
+            margin-left: 20px;
+            border-radius: 15px; /* Makes the corners of the images rounded */
+        }
+        .about-section p {
+            font-size: 20pt;
+            max-width: 70%;
+        }
+        .qr-code {
+            width: 200px;
+            margin: 20px;
+        }
+        /* Flashing animation */
+        @keyframes flashColors {
+            0% { color: red; }
+            25% { color: blue; }
+            50% { color: green; }
+            75% { color: purple; }
+            100% { color: orange; }
+        }
+        /* Apply the flashing animation to the text */
+        .flashing-text {
+            font-size: 18pt;
+            animation: flashColors 2s infinite; /* 2 seconds per cycle */
+        }
+    </style>
+    <script>
+        const aboutText = `
+            <html>
+                <head>
+                    <style>
+                        body { font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px; text-align: center; }
+                        h1 { color: #333; }
+                        h2 { color: #555; }
+                        .about-section {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin-bottom: 30px;
+                            text-align: left;
+                        }
+                        .about-section img {
+                            width: 300px;
+                            margin-left: 20px;
+                            margin-right: 20px;
+                            border-radius: 15px; /* Makes the corners of the images rounded */
+                        }
+                        .about-section p {
+                            font-size: 20pt;
+                            max-width: 70%;
+                        }
+                        .qr-code {
+                            width: 200px;
+                            margin: 25px;
+                        }
+                        /* Flashing animation */
+                        @keyframes flashColors {
+                            0% { color: red; }
+                            25% { color: blue; }
+                            50% { color: green; }
+                            75% { color: purple; }
+                            100% { color: orange; }
+                        }
+                        /* Apply the flashing animation to the text */
+                        .flashing-text {
+                            font-size: 18pt;
+                            animation: flashColors 2s infinite;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h2 style="font-size: 21pt; margin-bottom:50px;">See how well-calibrated your confidence is through multiple-choice questions!</h2>
+
+                    <div class="about-section">
+                        <p><b>What is confidence?</b> Confidence is the degree of <i>uncertainty</i> or rather certainty about an event or subject. For example, what's the distance of the Moon from the Earth? I am confident that it is more than 1 million kilometers with a 70% probability.</p>
+                        <img src="img/moon.jpg" alt="Moon Image">
+                    </div>
+
+                    <div class="about-section">
+                        <img src="img/calibration.jpg" alt="Calibration Image">
+                        <p><b>A desirable property:</b> I want my confidence to reflect its nominal degree of certainty of 70%, meaning that I want to be correct 70% of the time out of all the times I make a statement with confidence of 70%. Not more, not less. This means that my confidence is <b>calibrated</b>.</p>
+                    </div>
+
+                    <div class="about-section">
+                        <p><b>How do you assess calibration?</b> Imagine that I answer many such questions, with confidence ranging from 0% to 100%. My confidence is calibrated if, for all cases where I report a 70% confidence, I am correct 70% of the time. I am <b>over-confident</b> if I am correct less than 70%, and <b>under-confident</b> if I am correct more than 70% of the time.</p>
+                        <img src="img/assessment.jpg" alt="Assessment Image">
+                    </div>
+
+                    <br/><br/>
+                    <p style="font-size:20pt;">Now now, see it for yourself...</p><br/>
+                    
+                    <p style="font-size:20pt; text-align:left">Start with the <b style="color:#ff7777">Simple Demo</b> that contains 10 multiple-choice questions. After finishing, you can see your result and assess how well-calibrated your confidence was. You can repeat the same or other quizzes to track changes in your results. You can do the quizzes on your phone as well:</p>
+                    
+                    <img class="qr-code" src="img/hovercode.png">
+                    <img class="qr-code" src="img/hovercode (1).png">
+                    <img class="qr-code" src="img/hovercode (2).png">
+                    <img class="qr-code" src="img/hovercode (3).png">
+                    
+
+                    <br/><br/>
+                    <b class="flashing-text">Feel free to reach out to us if you have any questions or want to discuss!</b>
+
+                </body>
+            </html>
+        `;
+
+        function loadInIframe(url) {
+            const iframe = document.getElementById('main-iframe');
+            // Clear srcdoc before loading the external URL
+            iframe.removeAttribute('srcdoc');
+            iframe.src = url;
+        }
+
+        function displayAboutText() {
+            const iframe = document.getElementById('main-iframe');
+            iframe.srcdoc = aboutText;
+        }
+
+        window.onload = function() {
+            // Display the about text when the page first loads
+            displayAboutText();
+        };
+    </script>
+</head>
+<body>
+
+    <main>
+        <h1 style="font-size: 50px">Is your Confidence Calibrated?</h1>
+
+        <div class="button-container">
+            <!-- Simple Demo button with light red background -->
+            <button id="simple-demo-button" onclick="loadInIframe('https://bayes-up.web.app/q/6LrTdVvclv8X')">Simple Demo</button>
+            <button onclick="loadInIframe('https://bayes-up.web.app/q/5PXJvTCJ3CZz')">Estonia Trivia</button>
+            <button onclick="loadInIframe('https://bayes-up.web.app/q/zYRHOvP9l1Ek')">General ML</button>
+            <button onclick="loadInIframe('https://bayes-up.web.app/q/ZYhohr1Qsupn')">Uncertainty Quantification in ML</button>
+            <!-- About button to display the about text -->
+            <button onclick="displayAboutText()">About</button>
+        </div>
+
+        <!-- Iframe that displays the content or about text -->
+        <iframe id="main-iframe" frameborder="0"></iframe>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        This demo is created based on bayes-up.web.app -- UniTartuCS Day 2024.
+    </footer>
+
+</body>
+</html>
+
